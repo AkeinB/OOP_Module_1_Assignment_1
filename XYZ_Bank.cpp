@@ -9,9 +9,18 @@ class Account
         double Balance;
     
     public:
-        Account(double balance)
+        Account(double init_balance) //allows inital balance to be set when account is created and check that it is greater than $1000
         {
-            Balance = 0.0;
+            if (init_balance > 1000.0)
+            {
+                Balance = init_balance;
+            }   
+            else
+            {
+                Balance = 0.0;
+                cout << "Initial balance must be greater than $1000. Setting balance to $0.0" << endl;
+            }
+            
         }
         void setBalance();
         double getBalance();
@@ -20,8 +29,46 @@ class Account
 };
 int main()
 {
+    double initial_deposit;
+    int choice;//variable to store user choice
 
-    cout << "-----Welcome XYZ Bank-----" << endl;
+    cout <<"Enter Initial Balance: $"<< endl;
+    cin >> initial_deposit;
+
+    Account user_account(initial_deposit);//create account object
+
+    do{
+        cout << "\n-----XYZ Bank ATM Menu-----\n" << endl;
+        cout << "1. Check Balance" << endl;
+        cout << "2. Deposit Money" << endl;
+        cout << "3. Withdraw Money" << endl;
+        cout << "4. Exit\n" << endl;
+        cout << "Select an option (1-4): "<< endl;
+        cin >> choice;
+
+        switch(choice)
+        {
+            case 1:
+                {
+                    break;
+                }
+            case 2:
+                {
+                    break;
+                }
+            case 3:
+                {
+                    break;
+                }
+            case 4:
+                {
+                    cout << "Thank you for using XYZ Bank ATM. Goodbye!" << endl;
+                    break;
+                }
+        }
+
+
+    } while (choice != 4);//menu loop, cancels when user selects 4
 
 
 return 0;
