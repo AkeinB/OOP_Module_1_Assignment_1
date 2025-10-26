@@ -11,7 +11,7 @@ class Account
     public:
         Account(double init_balance) //allows inital balance to be set when account is created and check that it is greater than $1000
         {
-            if (init_balance > 1000.0)
+            if (init_balance >= 1000.0)
             {
                 Balance = init_balance;
             }   
@@ -63,6 +63,11 @@ int main()
             case 4:
                 {
                     cout << "Thank you for using XYZ Bank ATM. Goodbye!" << endl;
+                    break;
+                }
+            default:
+                {
+                    cout << "Invalid option. Please select a valid option (1-4)." << endl;
                     break;
                 }
         }
