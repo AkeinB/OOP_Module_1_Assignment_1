@@ -22,7 +22,6 @@ class Account
             }
             
         }
-        void setBalance();
         double getBalance();
         double deposit();
         bool withdraw();
