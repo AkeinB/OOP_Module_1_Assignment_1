@@ -22,14 +22,30 @@ class Account
             }
             
         }
-        double getBalance();
-        double deposit();
-        bool withdraw();
+
+        double getBalance() {
+            return Balance;
+        }
+
+        double deposit(double amount) {
+            Balance += amount;
+            return Balance;
+        }
+        bool withdraw(double amount) {
+            if (amount <= Balance) {
+                Balance -= amount;
+                return true;
+            }
+            cout << "Insufficient funds" << endl;
+            return false;
+        }
 };
+
 int main()
 {
     double initial_deposit;
     int choice;//variable to store user choice
+    double amount;
 
     cout <<"Enter Initial Balance: $"<< endl;
     cin >> initial_deposit;
@@ -49,21 +65,32 @@ int main()
         {
             case 1:
                 {
+                    cout << "Current Balance: $" << user_account.getBalance() << endl;
                     break;
                 }
+
             case 2:
                 {
+                    cout << "Enter amount to deposit: $"<< endl;
+                    cin >> amount;
+                    user_account.deposit(amount);
                     break;
                 }
+
             case 3:
                 {
+                    cout << "Enter amount to withdraw: $"<< endl;
+                    cin >> amount;
+                    user_account.withdraw(amount);
                     break;
                 }
+
             case 4:
                 {
                     cout << "Thank you for using XYZ Bank ATM. Goodbye!" << endl;
                     break;
                 }
+
             default:
                 {
                     cout << "Invalid option. Please select a valid option (1-4)." << endl;
@@ -72,7 +99,7 @@ int main()
         }
 
 
-    } while (choice != 4);//menu loop, cancels when user selects 4
+    } while (choice != 4); //menu loop, cancels when user selects 4.
 
 
 return 0;
