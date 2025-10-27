@@ -22,10 +22,25 @@ class Account
             }
             
         }
-        double getBalance();
-        double deposit();
-        bool withdraw();
+
+        double getBalance() {
+            return Balance;
+        }
+
+        double deposit(double amount) {
+            Balance += amount;
+            return Balance;
+        }
+        bool withdraw(double amount) {
+            if (amount <= Balance) {
+                Balance -= amount;
+                return true;
+            }
+            cout << "Insufficient funds" << endl;
+            return false;
+        }
 };
+
 int main()
 {
     double initial_deposit;
