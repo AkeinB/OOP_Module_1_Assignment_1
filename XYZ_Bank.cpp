@@ -99,7 +99,7 @@ int main()
         }
 
 
-    } while (choice != 4);//menu loop, cancels when user selects 4
+    } while (choice != 4); //menu loop, cancels when user selects 4.
 
 
 return 0;
