@@ -76,7 +76,7 @@ int main()
 
             case 2:
                 {
-                    cout << "Enter amount to deposit: $"<< endl;
+                    cout << "Enter amount to deposit: $";
                     cin >> amount;
                     user_account.deposit(amount);
                     break;
@@ -84,7 +84,7 @@ int main()
 
             case 3:
                 {
-                    cout << "Enter amount to withdraw: $"<< endl;
+                    cout << "Enter amount to withdraw: $";
                     cin >> amount;
                     user_account.withdraw(amount);
                     break;
