@@ -18,7 +18,7 @@ class Account
             else
             {
                 Balance = 0.0;
-                cout << "Initial balance must be greater than $1000. Setting balance to $0.0" << endl;
+                cout << "Initial balance must be a $1000 or greater. Setting balance to $0.0" << endl;
             }
             
         }
@@ -29,15 +29,20 @@ class Account
 
         double deposit(double amount) {
             Balance += amount;
+            cout << "-----Deposit processed----." << endl;
             return Balance;
         }
         bool withdraw(double amount) {
             if (amount <= Balance) {
                 Balance -= amount;
+                cout << "----Withdrawal processed----" << endl;
                 return true;
             }
-            cout << "Insufficient funds" << endl;
-            return false;
+            else 
+            {
+                cout << "----Insufficient funds----" << endl;
+                return false;
+            }
         }
 };
 
