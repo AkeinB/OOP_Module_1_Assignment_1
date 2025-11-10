@@ -40,7 +40,7 @@ class Account
             }
             else 
             {
-                cout << "----Insufficient funds----" << endl;
+                cout << "Debit amount exceeded account balance."  << endl;
                 return false;
             }
         }
