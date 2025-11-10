@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "c:/Users/kemo5/OneDrive - Vocational Training Development Institute/Desktop/VTDI/Year 2/Object Oriented Programming/Assignment/OOP_Module_1_Assignment_1",
+      "program": "c:/Users/kemo5/OneDrive - Vocational Training Development Institute/Desktop/VTDI/Year 2/Object Oriented Programming/Assignment/OOP_Module_1_Assignment_1/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}
