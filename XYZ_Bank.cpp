@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <limits>
 using namespace std;
 
 
@@ -54,6 +55,14 @@ int main()
 
     cout <<"Enter Initial Balance: $"<< endl;
     cin >> initial_deposit;
+
+     while( !cin.good() ) //input validation for initial deposit
+    {
+        cout << "Invalid input. Please enter a numeric value for the initial balance: $"<< endl;
+        cin.clear(); // clears the error flag
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discards invalid input
+        cin >> initial_deposit;
+    }
 
     Account user_account(initial_deposit);//create account object
 
