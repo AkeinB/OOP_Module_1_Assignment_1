@@ -65,7 +65,6 @@ int main()
         cin.clear(); // clears the error flag
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discards invalid input
         cin >> initial_deposit;
- 
     }
 
     Account user_account(initial_deposit);//create account object
