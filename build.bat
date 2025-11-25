@@ -1,0 +1,1 @@
+g++ -std=c++20 -Wall XYZ_Bank.cpp -o XYZ_Bank.exe

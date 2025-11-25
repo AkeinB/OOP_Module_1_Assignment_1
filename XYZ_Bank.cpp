@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
-using namespace std ;
+#include <iomanip>
+#include <limits>
+using namespace std;
 
 
 class Account
@@ -23,16 +25,19 @@ class Account
             
         }
 
-        double getBalance() {
+        double getBalance() 
+        {
             return Balance;
         }
 
-        double deposit(double amount) {
+        double deposit(double amount) 
+        {
             Balance += amount;
             cout << "-----Deposit processed----." << endl;
             return Balance;
         }
-        bool withdraw(double amount) {
+        bool withdraw(double amount) 
+        {
             if (amount <= Balance) {
                 Balance -= amount;
                 cout << "----Withdrawal processed----" << endl;
@@ -51,9 +56,17 @@ int main()
     double initial_deposit;
     int choice;//variable to store user choice
     double amount;
-
     cout <<"Enter Initial Balance: $"<< endl;
     cin >> initial_deposit;
+
+    while( !cin.good() ) //input validation for initial deposit
+    {
+        cout << "Invalid input. Please enter a numeric value for the initial balance: $"<< endl;
+        cin.clear(); // clears the error flag
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discards invalid input
+        cin >> initial_deposit;
+ 
+    }
 
     Account user_account(initial_deposit);//create account object
 
