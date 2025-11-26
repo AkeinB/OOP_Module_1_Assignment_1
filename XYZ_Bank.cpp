@@ -129,7 +129,7 @@ int main()
         cin >> initial_deposit;
     }
 
-    // (TO DO!!)need section to allow user to sellect account type (savings or checking)
+    // (TO DO!!)need section to allow user to select account type (savings or checking)
     //example: IF account_type == 1 THEN create savings account
     //ELSE IF account_type == 2 THEN create checking account
     // ELSE prompt user to enter valid account type (1 or 2)
