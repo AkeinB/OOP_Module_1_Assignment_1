@@ -3,16 +3,18 @@
 #include <limits>
 using namespace std;
 
-
+/// ====================
+// Base class: Account
+// =====================
 class Account
 {
-    private:
+    protected:// chnaged from private to protected to allow access in derived classes
         double Balance;
     
     public:
         Account(double init_balance) //allows inital balance to be set when account is created and check that it is greater than $1000
         {
-            if (init_balance >= 1000.0)
+            if (init_balance >= 1000.00)
             {
                 Balance = init_balance;
             }   
@@ -24,17 +26,22 @@ class Account
             
         }
 
-        double getBalance() {
+        double getBalance()//function to return current balance
+        {
             return Balance;
         }
 
-        double deposit(double amount) {
+        virtual double deposit(double amount)//function to deposit money into account
+        {
             Balance += amount;
             cout << "-----Deposit processed----." << endl;
             return Balance;
         }
-        bool withdraw(double amount) {
-            if (amount <= Balance) {
+
+        virtual bool withdraw(double amount)//function to withdraw money from account
+        {
+            if (amount <= Balance)
+            {
                 Balance -= amount;
                 cout << "----Withdrawal processed----" << endl;
                 return true;
@@ -47,11 +54,69 @@ class Account
         }
 };
 
+//================================
+// Derived class: Savings Account
+//=================================
+class SavingsAccount : public Account //class derived from Account
+{
+    private:
+        double interestRate; 
+    public:
+        SavingsAccount(double init_balance, double rate = 0.05) : Account(init_balance) //constructor inherited from base class Account
+        {
+            interestRate = rate; //assign interest rate of 5% to interestRate variable
+        }
+    
+        double calculateInterest() //function to calculate interest earned
+        {
+            return Balance * interestRate;
+        }
+};
+//================================
+// Derived class: Checking Account
+//=================================
+class CheckingAccount : public Account //class derived from Account
+{
+    private:
+        double transactionfee;
+    public:
+        CheckingAccount(double init_balance, double fee = 2.00) : Account(init_balance) //constructor inherited from base class Account
+        {
+            transactionfee = fee; //innitial transaction fee
+        }
+
+        bool withdraw(double amount) override//override withdraw function to include transaction fee
+        {
+            double totalAmount = amount + transactionfee; //total amount to withdraw including transaction fee
+            if (totalAmount <= Balance)
+            {
+                Balance -= totalAmount;
+                cout << "----Withdrawal processed with transaction fee of $" << transactionfee << "----" << endl;
+                return true;
+            }
+            else 
+            {
+                cout << "Debit amount plus transaction fee exceeded account balance."  << endl;
+                return false;
+            }
+        }
+
+        double deposit(double amount) override//override deposit function to include transaction fee
+        {
+            Balance += amount;
+            Balance -= transactionfee; //deduct transaction fee from deposit
+            cout << "-----Deposit processed with transaction fee of $" << transactionfee << "----." << endl;
+            return true;
+        }
+};
+
+
 int main()
 {
     double initial_deposit;
     int choice;//variable to store user choice
     double amount;
+    int account_type;
 
     cout <<"Enter Initial Balance: $"<< endl;
     cin >> initial_deposit;
@@ -63,6 +128,14 @@ int main()
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discards invalid input
         cin >> initial_deposit;
     }
+
+    // (TO DO!!)need section to allow user to sellect account type (savings or checking)
+    //example: IF account_type == 1 THEN create savings account
+    //ELSE IF account_type == 2 THEN create checking account
+    // ELSE prompt user to enter valid account type (1 or 2)
+
+    //(TO DO!!)Input validation for account type selection(copy and alter above input validation code or create universal funtion)
+
 
     Account user_account(initial_deposit);//create account object
 
