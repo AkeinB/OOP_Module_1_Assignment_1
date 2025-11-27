@@ -137,7 +137,8 @@ int main()
     //(TO DO!!)Input validation for account type selection(copy and alter above input validation code or create universal funtion)
 
 
-    Account user_account(initial_deposit);//create account object
+    Account user_account(initial_deposit);// (TO DO) THERE IS NO NEED TO CALL BASE ACCOUNT, SO REMOVE THIS LINE AND CREATE EITHER A SAVINGS OR CHECKING ACCOUNT BASED ON USER SELECTION
+    //Example: SavingsAccount user_account(initial_deposit); OR CheckingAccount user_account(initial_deposit);
 
     do{
         cout << "\n-----XYZ Bank ATM Menu-----\n" << endl;
