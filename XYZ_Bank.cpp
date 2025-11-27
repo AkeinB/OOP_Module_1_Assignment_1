@@ -31,14 +31,14 @@ class Account
             return Balance;
         }
 
-        virtual double deposit(double amount)//function to deposit money into account
+        virtual double deposit(double amount)//function to deposit money into account // change from doube to virtual double
         {
             Balance += amount;
             cout << "-----Deposit processed----." << endl;
             return Balance;
         }
 
-        virtual bool withdraw(double amount)//function to withdraw money from account
+        virtual bool withdraw(double amount)//function to withdraw money from account // change from bool to virtual bool
         {
             if (amount <= Balance)
             {
@@ -57,7 +57,7 @@ class Account
 //================================
 // Derived class: Savings Account
 //=================================
-class SavingsAccount : public Account //class derived from Account
+class SavingsAccount : public Account //class derived from base class Account
 {
     private:
         double interestRate; 
@@ -75,7 +75,7 @@ class SavingsAccount : public Account //class derived from Account
 //================================
 // Derived class: Checking Account
 //=================================
-class CheckingAccount : public Account //class derived from Account
+class CheckingAccount : public Account //class derived from base class Account
 {
     private:
         double transactionfee;
@@ -116,12 +116,12 @@ int main()
     double initial_deposit;
     int choice;//variable to store user choice
     double amount;
-    int account_type;
+    int account_type; //variable to store account type selection
 
     cout <<"Enter Initial Balance: $"<< endl;
     cin >> initial_deposit;
 
-     while( !cin.good() ) //input validation for initial deposit
+    while( !cin.good() ) //input validation for initial deposit
     {
         cout << "Invalid input. Please enter a numeric value for the initial balance: $"<< endl;
         cin.clear(); // clears the error flag
