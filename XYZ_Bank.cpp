@@ -21,7 +21,7 @@ class Account
             else
             {
                 Balance = 0.0;
-                cout << "Initial balance must be a $1000 or greater. Setting balance to $0.0" << endl;
+                cout << "----Initial balance must be a $1000 or greater. Setting balance to $0.0----" << endl;
             }
             
         }
@@ -48,7 +48,7 @@ class Account
             }
             else 
             {
-                cout << "Debit amount exceeded account balance."  << endl;
+                cout << "----Debit amount exceeded account balance.----"  << endl;
                 return false;
             }
         }
@@ -62,9 +62,9 @@ class SavingsAccount : public Account //class derived from base class Account
     private:
         double interestRate; 
     public:
-        SavingsAccount(double init_balance, double rate = 0.05) : Account(init_balance) //constructor inherited from base class Account
+        SavingsAccount(double init_balance) : Account(init_balance) //constructor inherited from base class Account
         {
-            interestRate = rate; //assign interest rate of 5% to interestRate variable
+            interestRate = 0.05; //assign interest rate of 5% to interestRate variable
         }
     
         double calculateInterest() //function to calculate interest earned
@@ -80,9 +80,9 @@ class CheckingAccount : public Account //class derived from base class Account
     private:
         double transactionfee;
     public:
-        CheckingAccount(double init_balance, double fee = 2.00) : Account(init_balance) //constructor inherited from base class Account
+        CheckingAccount(double init_balance) : Account(init_balance) //constructor inherited from base class Account
         {
-            transactionfee = fee; //innitial transaction fee
+            transactionfee = 2.00; //innitial transaction fee
         }
 
         bool withdraw(double amount) override//override withdraw function to include transaction fee
@@ -96,7 +96,7 @@ class CheckingAccount : public Account //class derived from base class Account
             }
             else 
             {
-                cout << "Debit amount plus transaction fee exceeded account balance."  << endl;
+                cout << "----Debit amount plus transaction fee exceeded account balance.-----"  << endl;
                 return false;
             }
         }
@@ -118,23 +118,23 @@ int main()
     double amount;
     int account_type; //variable to store account type selection
 
-    cout <<"Enter Initial Balance: $"<< endl;
+    cout <<"Enter Initial Balance: $";
     cin >> initial_deposit;
 
     while( !cin.good() ) //input validation for initial deposit
     {
-        cout << "Invalid input. Please enter a numeric value for the initial balance: $"<< endl;
+        cout << "INVALID INPUT!!. Please enter a numeric value for the initial balance: $"<< endl;
         cin.clear(); // clears the error flag
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discards invalid input
         cin >> initial_deposit;
     }
 
     // Prompt user to select account type (savings or checking) with validation
-    cout << "Select account type:\n1. Savings\n2. Checking\nEnter choice (1 or 2): " << endl;
+    cout << "Select account type:\n1. Savings\n2. Checking\nEnter choice (1 or 2): ";
     cin >> account_type;
     while (!cin.good() || (account_type != 1 && account_type != 2))
     {
-        cout << "Invalid input. Enter 1 for Savings or 2 for Checking: " << endl;
+        cout << "\nINVALID INPUT!!. Enter 1 for Savings OR 2 for Checking: " << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin >> account_type;
@@ -145,22 +145,25 @@ int main()
     if (account_type == 1)
     {
         user_account = new SavingsAccount(initial_deposit);
-        cout << "Savings account created." << endl;
+        cout << "//-----Savings account created.------//" << endl;
     }
     else // account_type == 2
     {
         user_account = new CheckingAccount(initial_deposit);
-        cout << "Checking account created." << endl;
+        cout << "//-----Checking account created.------//" << endl;
     }
 
     do{
+        cout << "===============================" << endl;
         cout << "\n-----XYZ Bank ATM Menu-----\n" << endl;
         cout << "1. Check Balance" << endl;
         cout << "2. Deposit Money" << endl;
         cout << "3. Withdraw Money" << endl;
         cout << "4. Exit\n" << endl;
-        cout << "Select an option (1-4): "<< endl;
+        cout << "Select an option (1-4): ";
         cin >> choice;
+        cout << "===============================" << endl;
+
 
         switch(choice)
         {
@@ -175,6 +178,12 @@ int main()
                     cout << "Enter amount to deposit: $";
                     cin >> amount;
                     user_account->deposit(amount);// Corrections made
+
+                    if (dynamic_cast<SavingsAccount*>(user_account)) //check if user_account is a SavingsAccount
+                    {
+                        double interest = dynamic_cast<SavingsAccount*>(user_account)->calculateInterest();
+                        cout << "Interest earned: $" << interest << endl;
+                    }
                     break;
                 }
 
