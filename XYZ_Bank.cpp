@@ -166,7 +166,7 @@ int main()
         {
             case 1:
                 {
-                    cout << "Current Balance: $" << user_account.getBalance() << endl;
+                    cout << "Current Balance: $" << user_account->getBalance() << endl;
                     break;
                 }
 
@@ -174,7 +174,7 @@ int main()
                 {
                     cout << "Enter amount to deposit: $";
                     cin >> amount;
-                    user_account.deposit(amount);
+                    user_account.deposit(amount);// (CORRECTION HERE)SHOULD BE A POINTER
                     break;
                 }
 
@@ -182,7 +182,7 @@ int main()
                 {
                     cout << "Enter amount to withdraw: $";
                     cin >> amount;
-                    user_account.withdraw(amount);
+                    user_account.withdraw(amount);// (CORRECTION HERE)SHOULD BE A POINTER
                     break;
                 }
 
