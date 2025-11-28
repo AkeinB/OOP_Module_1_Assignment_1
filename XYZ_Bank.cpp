@@ -174,7 +174,7 @@ int main()
                 {
                     cout << "Enter amount to deposit: $";
                     cin >> amount;
-                    user_account.deposit(amount);// (CORRECTION HERE)SHOULD BE A POINTER
+                    user_account->deposit(amount);// Corrections made
                     break;
                 }
 
@@ -182,7 +182,7 @@ int main()
                 {
                     cout << "Enter amount to withdraw: $";
                     cin >> amount;
-                    user_account.withdraw(amount);// (CORRECTION HERE)SHOULD BE A POINTER
+                    user_account->withdraw(amount);//Corrections made
                     break;
                 }
 
