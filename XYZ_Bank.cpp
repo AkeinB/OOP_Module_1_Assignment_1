@@ -129,16 +129,29 @@ int main()
         cin >> initial_deposit;
     }
 
-    // (TO DO!!)need section to allow user to select account type (savings or checking)
-    //example: IF account_type == 1 THEN create savings account
-    //ELSE IF account_type == 2 THEN create checking account
-    // ELSE prompt user to enter valid account type (1 or 2)
+    // Prompt user to select account type (savings or checking) with validation
+    cout << "Select account type:\n1. Savings\n2. Checking\nEnter choice (1 or 2): " << endl;
+    cin >> account_type;
+    while (!cin.good() || (account_type != 1 && account_type != 2))
+    {
+        cout << "Invalid input. Enter 1 for Savings or 2 for Checking: " << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> account_type;
+    }
 
-    //(TO DO!!)Input validation for account type selection(copy and alter above input validation code or create universal funtion)
-
-
-    Account user_account(initial_deposit);// (TO DO) THERE IS NO NEED TO CALL BASE ACCOUNT, SO REMOVE THIS LINE AND CREATE EITHER A SAVINGS OR CHECKING ACCOUNT BASED ON USER SELECTION
-    //Example: SavingsAccount user_account(initial_deposit); OR CheckingAccount user_account(initial_deposit);
+    // Create either a Savings Account or Checking Account based on user selection
+    Account* user_account = nullptr;
+    if (account_type == 1)
+    {
+        user_account = new SavingsAccount(initial_deposit);
+        cout << "Savings account created." << endl;
+    }
+    else // account_type == 2
+    {
+        user_account = new CheckingAccount(initial_deposit);
+        cout << "Checking account created." << endl;
+    }
 
     do{
         cout << "\n-----XYZ Bank ATM Menu-----\n" << endl;
