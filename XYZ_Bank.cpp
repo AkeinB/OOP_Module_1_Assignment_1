@@ -24,7 +24,7 @@ class Transaction
 // =====================
 class Account
 {
-    protected:// chnaged from private to protected to allow access in derived classes
+    protected:// changed from private to protected to allow access in derived classes
         double Balance;
         vector <Transaction> log; //Logs the transaction
     
