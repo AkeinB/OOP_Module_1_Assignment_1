@@ -71,20 +71,23 @@ class Account
                 return false;
             }
         }
-};
+
             //New assistance methods
-        void addTransaction(const Transaction& t) {
+        void addTransaction(const Transaction& t)
+            {
                 log.push_back(t);
             }
 
-            void report() {
+            void report()
+            {
                 cout << "\n--- Transaction Report ---\n";
                 for (const auto& t : log) {
                     cout << t.report() << endl;
                 }
             }
-        {
-            void saveReportToFile() {
+        
+            void saveReportToFile()
+             {
                 try {
                     ofstream file("C:\\transactions.txt");
                     if (!file) throw runtime_error("File could not be opened.");
@@ -97,7 +100,8 @@ class Account
                     cout << "Error saving file: " << e.what() << endl;
                 }
             }
-        };
+};
+
 
 
 //================================
@@ -253,7 +257,7 @@ int main()
             
             case 5:
                 {
-                    user_account->SaveReportToFile(); //Saves to file
+                    user_account->saveReportToFile(); //Saves to file
                     break;
                 }
 
@@ -271,7 +275,7 @@ int main()
         }
 
 
-    } while (choice != 4); //menu loop, cancels when user selects 4.
+    } while (choice != 6); //menu loop, cancels when user selects 6.
 
 
 return 0;
