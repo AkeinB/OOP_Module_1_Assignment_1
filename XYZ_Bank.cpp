@@ -1,7 +1,23 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <vector> 
+#include <fstream> //file saving
 using namespace std;
+
+
+///====================
+//Transaction Class
+///====================
+class Transaction
+{
+    private:
+        double amount;
+        string type;
+    public:
+    Transaction(double amt, string t) : amount(amt), type(t) {}
+    string report() const { return "Transaction: " + type +" Amount: $" + to_string(amount);}
+};
 
 /// ====================
 // Base class: Account
@@ -10,6 +26,7 @@ class Account
 {
     protected:// chnaged from private to protected to allow access in derived classes
         double Balance;
+        vector <Transaction> log; //Logs the transaction
     
     public:
         Account(double init_balance) //allows inital balance to be set when account is created and check that it is greater than $1000
@@ -35,6 +52,7 @@ class Account
         {
             Balance += amount;
             cout << "-----Deposit processed----." << endl;
+            addTransaction(Transaction(amount, "Deposit")); //Records the Deposit
             return Balance;
         }
 
@@ -44,6 +62,7 @@ class Account
             {
                 Balance -= amount;
                 cout << "----Withdrawal processed----" << endl;
+                addTransaction(Transaction(amount, "Withdrawal")); //Records the vWithdrawal
                 return true;
             }
             else 
@@ -53,6 +72,33 @@ class Account
             }
         }
 };
+            //New assistance methods
+        void addTransaction(const Transaction& t) {
+                log.push_back(t);
+            }
+
+            void report() {
+                cout << "\n--- Transaction Report ---\n";
+                for (const auto& t : log) {
+                    cout << t.report() << endl;
+                }
+            }
+        {
+            void saveReportToFile() {
+                try {
+                    ofstream file("C:\\transactions.txt");
+                    if (!file) throw runtime_error("File could not be opened.");
+                    for (const auto& t : log) {
+                        file << t.report() << endl;
+                    }
+                    file.close();
+                    cout << "Transactions saved to C:\\transactions.txt\n";
+                } catch (const exception& e) {
+                    cout << "Error saving file: " << e.what() << endl;
+                }
+            }
+        };
+
 
 //================================
 // Derived class: Savings Account
@@ -92,6 +138,7 @@ class CheckingAccount : public Account //class derived from base class Account
             {
                 Balance -= totalAmount;
                 cout << "----Withdrawal processed with transaction fee of $" << transactionfee << "----" << endl;
+                addTransaction(Transaction(amount, "Withdrawal (with fee)")); //Recorded with the fee
                 return true;
             }
             else 
@@ -106,6 +153,7 @@ class CheckingAccount : public Account //class derived from base class Account
             Balance += amount;
             Balance -= transactionfee; //deduct transaction fee from deposit
             cout << "-----Deposit processed with transaction fee of $" << transactionfee << "----." << endl;
+            addTransaction(Transaction(amount, "Deposit (with fee)")); //Recorded with the fee
             return true;
         }
 };
@@ -159,8 +207,10 @@ int main()
         cout << "1. Check Balance" << endl;
         cout << "2. Deposit Money" << endl;
         cout << "3. Withdraw Money" << endl;
-        cout << "4. Exit\n" << endl;
-        cout << "Select an option (1-4): ";
+        cout << "4. View Transactions added" << endl;
+        cout << "5. Save Transactions added" << endl;
+        cout << "6. Exit\n" << endl;
+        cout << "Select an option (1-6): ";
         cin >> choice;
         cout << "===============================" << endl;
 
@@ -196,6 +246,18 @@ int main()
                 }
 
             case 4:
+                {
+                    user_account->report(); //Shows Transaction history
+                    break;
+                }
+            
+            case 5:
+                {
+                    user_account->SaveReportToFile(); //Saves to file
+                    break;
+                }
+
+            case 6:
                 {
                     cout << "Thank you for using XYZ Bank ATM. Goodbye!" << endl;
                     break;
