@@ -119,8 +119,8 @@ int main()
                 }
             
             case 5:
-                {
-                    user_account->saveReportToFile(); //Saves to file
+                {//Saves Transaction history to file
+                    user_account->saveReportToFile(); //NOTE: Program must RUN with ADMINISTRATOR PRIVILEGES to save to C:\
                     break;
                 }
 

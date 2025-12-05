@@ -79,7 +79,7 @@ class Account
             void saveReportToFile()//function to save transaction report to file
              {
                 try {
-                    ofstream file("transactions.txt");
+                    ofstream file("C:\\transactions.txt");
                     if (!file) throw runtime_error("File could not be opened.");
                     file << fixed << setprecision(2);//set decimal precision to 2 e.g $100.00
 
@@ -87,7 +87,7 @@ class Account
                         file << t.report() << endl;
                     }
                     file.close();
-                    cout << "Transactions saved to transactions.txt successfully." << endl;
+                    cout << "Transactions saved to C:\\transactions.txt successfully." << endl;
                 } catch (const exception& e) {
                     cout << "Error saving file: " << e.what() << endl;
                 }

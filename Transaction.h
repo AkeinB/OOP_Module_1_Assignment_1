@@ -18,7 +18,11 @@ class Transaction
         string type;
     public:
     Transaction(double amt, string t) : amount(amt), type(t) {}
-    string report() const { return "Transaction: " + type +" Amount: $" + to_string(amount);}
+    
+    string report() const
+    { 
+        return "Transaction: " + type +" Amount: $" + to_string(amount);
+    }
 };
 
 #endif // TRANSACTION_H
