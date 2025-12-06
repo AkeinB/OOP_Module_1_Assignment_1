@@ -5,7 +5,10 @@
 #include <vector>
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 #include <fstream>
+#include <stdexcept>
+
 #include "Transaction.h"
 using namespace std;
 
@@ -81,8 +84,7 @@ class Account
                 try {
                     ofstream file("C:\\transactions.txt");
                     if (!file) throw runtime_error("File could not be opened.");
-                    file << fixed << setprecision(2);//set decimal precision to 2 e.g $100.00
-
+                    
                     for (const auto& t : log) {
                         file << t.report() << endl;
                     }

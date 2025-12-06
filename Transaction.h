@@ -3,6 +3,9 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <iomanip>
+#include <sstream>
 using namespace std;
 
 
@@ -21,7 +24,10 @@ class Transaction
     
     string report() const
     { 
-        return "Transaction: " + type +" Amount: $" + to_string(amount);
+        ostringstream out;
+        out << fixed << setprecision(2);
+        out << "Transaction: " << type << " Amount: $" << amount;
+        return out.str();
     }
 };
 

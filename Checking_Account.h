@@ -1,6 +1,10 @@
 #ifndef CHECKING_ACCOUNT_H
 #define CHECKING_ACCOUNT_H
+
+#include <iostream>
+using namespace std;
 #include "Account.h"
+
 
 //================================
 // Derived class: Checking Account
