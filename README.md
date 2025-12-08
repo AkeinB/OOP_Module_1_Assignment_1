@@ -1,4 +1,4 @@
-# Module_1_Assignment_1
+# Module_1_Assignment_3
 Group Members:
 Akein Bantin,
 Chevar Prince,
@@ -7,23 +7,10 @@ Ryan Brown,
 Zhane Tomline 
 
 
-Building on the project from Assignment 1, we will add features for specific types of accounts that exist in a real Bank. Savings accounts, for instance, earn interest on the money they hold.
-Chequing accounts, on the other hand, charge a fee per transaction (i.e., credit or debit).
+Modify your XYZ Bank Application to record all transactions/queries made to the system. Add a Transaction class to your project that records the transaction amount and type. It should have a parameterized constructor to set these values and a public function report() that builds a string to display the transaction information.
 
-Create an Inheritance hierarchy using base class Account and derived classes Savings- Account and CheckingAccount.
+Add a data member log of type vector to the Account class which accepts a Transaction object to store transaction information.
 
-Derived class SavingsAccount should inheritted  the functionality of an Account, but also include a data member indicating the interest rate (percentage) assigned to the Account.
-SavingsAccount’s constructor should inherit from the Account constructor, as well as have a parameter for the SavingsAccount’s interest rate.
+Also add a report() function to the Account class that formats transaction information to be displayed to the user upon request.
 
-SavingsAccount should provide a public member function CalculateInterest() that returns a double indicating the amount of interest earned by an account. 
-Member function CalculateInterest should determine this amount by multiplying the interest rate by the account balance. [Note: SavingsAccount should inherit member functions credit and debit as is without redefining them.]
-
-Derived class ChequingAccount should inherit from base class Account and include an additional data member that represents the fee charged per transaction.
-ChequingAccount’s constructor should also inherit from the Account class constructor, as well as a parameter indicating a fee amount.
-
-Class ChequingAccount should redefine member function debit/withdraw so that it will
-subtract the fee from the account balance whenever the transaction is performed successfully. The function should charge a fee only if money is actually withdrawn (i.e., the debit amount does not exceed the account balance).
-
-After defining the classes in this hierarchy, write a program that creates objects of each class
-and tests their member functions. For e.g. Add interest to the SavingsAccount object by first invoking its calculateInterest function, then adding the returned interest amount to the Savings object’s balance, and make a withdrawal from the ChequingAccount object and see if the fee was also subtracted.
-function. 
+Inside your main file test this new functionality. In addition, use proper try/catch statements for defensive programming best practices, and attempt to save the transactions report to a transactions.txt file on your C:\ drive. 
