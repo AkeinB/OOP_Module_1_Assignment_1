@@ -269,7 +269,7 @@ int main()
 
             default:
                 {
-                    cout << "Invalid option. Please select a valid option (1-4)." << endl;
+                    cout << "Invalid option. Please select a valid option (1-6)." << endl;
                     break;
                 }
         }
